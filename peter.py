@@ -6,12 +6,12 @@
 import pygame, sys, random
 
 #Define some variables
-scale = 1
-screenWidth = 1600/scale
-screenHeight = 900/scale
+scale = 3
+screenWidth = int(600 + (scale * 200)) #=1200
+screenHeight = int(500 + (scale * 100)) #=600
 cellX = 29
 cellY = 32
-cellPx = 27 / scale#int(screenHeight/cellY) 
+cellPx = int(15 + (scale * 3)) #int(screenHeight/cellY) 
 peterDir = 0 # 0 left 1 right 2 up 3 down 
 setDir = 0
 manStartX = cellPx * 14
@@ -22,7 +22,7 @@ bCanContinue = True
 score = 0
 currentFood = 0
 level = 0
-clockTickSet = int(100 / scale)
+clockTickSet = int(30 + (scale * 30))
 paused = False
 
 #Define some levels as strings
@@ -61,32 +61,32 @@ level1Template += "xwwwwwwwwwwwwwwwwwwwwwwwwwwww"
 
 level2Template = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 level2Template += "xwwwwwwwwwwwwwwwwwwwwwwwwwwww"
-level2Template += "xw..........................w"
-level2Template += "xw.wwww.wwwww.ww.wwwww.wwww.w"
-level2Template += "xw.wxxw.wxxxw.ww.wxxxw.wxxw.w"
-level2Template += "xw.wwww.wwwww.ww.wwwww.wwww.w"
-level2Template += "xw..........................w"
+level2Template += "xw....wwwwwwwwwwwwwwwwww....w"
+level2Template += "xw.ww.........ww.........ww.w"
+level2Template += "xw.wwwwwwwwww.ww.wwwwwwwwww.w"
+level2Template += "xw.wwwwwwwwww.ww.wwwwwwwwww.w"
+level2Template += "xw......ww..........ww......w"
 level2Template += "xw.wwww.ww.wwwwwwww.ww.wwww.w"
 level2Template += "xw.wwww.ww.wwwwwwww.ww.wwww.w"
-level2Template += "xw......ww....ww....ww......w"
-level2Template += "xwwwwww.wwwww.ww.wwwww.wwwwww"
-level2Template += "xxxxxxw.wwwww.ww.wwwww.wxxxxx"
-level2Template += "xxxxxxw.wwxxxxxxxxxxww.wxxxxx"
-level2Template += "xxxxxxw.wwxwwwwwwwwxww.wxxxxx"
-level2Template += "xxxxxxw.wwxwwwwwwwwxww.wxxxxx"
-level2Template += "xxxxxxw.xxexxxxxxxxexx.wxxxxx"
-level2Template += "xxxxxxwgwwwwwwwwwwwwwwgwxxxxx"
-level2Template += "xxxxxxw.wwwwwwwwwwwwww.wxxxxx"
-level2Template += "xxxxxxw.ww..........ww.wxxxxx"
-level2Template += "xxxxxxw.ww.wwwwwwww.ww.wxxxxx"
-level2Template += "xwwwwww.ww.wwwwwwww.ww.wwwwww"
+level2Template += "xw............ww............w"
+level2Template += "xwwwwww.wwwwwxwwxwwwww.wwwwww"
+level2Template += "xxxxwww.wwwwwxwwxwwwww.wwwxxx"
+level2Template += "xxxxw...ww..........ww...wxxx"
+level2Template += "xxxxw.wwww.wwwxxwww.wwww.wxxx"
+level2Template += "xxxxw.wxxw.wxxxxxxw.wxxw.wxxx"
+level2Template += "xxxxw.wxxw.wxxxxxxw.wxxw.wxxx"
+level2Template += "xxxxw.wxxw.wexxxxew.wxxw.wxxx"
+level2Template += "xxxxw.wwww.wwwxxwww.wwww.wxxx"
+level2Template += "xxxxw...ww..........ww...wxxx"
+level2Template += "xxxxwww.wwwwwxwwxwwwww.wwwxxx"
+level2Template += "xwwwwww.wwwwwxwwxwwwww.wwwwww"
 level2Template += "xw............ww............w"
 level2Template += "xw.wwww.wwwww.ww.wwwww.wwww.w"
 level2Template += "xw.wwww.wwwww.ww.wwwww.wwww.w"
-level2Template += "xw...ww.......xx.......ww...w"
+level2Template += "xw...ww.ww....xx....ww.ww...w"
 level2Template += "xwww.ww.ww.wwwwwwww.ww.ww.www"
 level2Template += "xwww.ww.ww.wwwwwwww.ww.ww.www"
-level2Template += "xw......ww....ww....ww......w"
+level2Template += "xw............ww............w"
 level2Template += "xw.wwwwwwwwww.ww.wwwwwwwwww.w"
 level2Template += "xw.wwwwwwwwww.ww.wwwwwwwwww.w"
 level2Template += "xw..........................w"
@@ -264,33 +264,36 @@ def ManGridCheckpoint(locX, locY): #location X and location Y of the player char
         peterDir = setDir
         
     if int(manX % cellPx) == 0 and int(manY % cellPx) == 0 : #Check if we align on the grid coords in pixels
+        
+        #First Check if we're on a food
         newFood.update()
+        
         match setDir:#Check if we can change our existing movement
             case 0: #Left
-                if levelList[level][gridY * cellX  + clamp(gridX - 1, 0 , cellX)] != "w":
+                if levelCharCheck(gridX, gridY, 0, "w") == False:
                     peterDir = setDir
             case 1: #Right
-                if levelList[level][gridY * cellX  + clamp(gridX + 1, 0 , cellX)] != "w":
+                if levelCharCheck(gridX, gridY, 1, "w") == False:
                     peterDir = setDir
             case 2: #Up
-                if levelList[level][clamp((gridY - 1) * cellX, 0, cellY*cellX) + gridX] != "w":
+                if levelCharCheck(gridX, gridY, 2, "w") == False:
                     peterDir = setDir
             case 3: #Down
-                if levelList[level][ clamp((gridY + 1) * cellX, 0, cellY*cellX) + gridX ] != "w":
+                if levelCharCheck(gridX, gridY, 3, "w") == False :
                     peterDir = setDir
         
         match peterDir:#Check if we can change our existing movement
             case 0: #Left
-                if levelList[level][gridY * cellX  + clamp(gridX - 1, 0 , cellX)] == "w":
+                if levelCharCheck(gridX, gridY, 0, "w") == True:
                     bCanContinue = False
             case 1: #Right
-                if levelList[level][gridY * cellX  + clamp(gridX + 1, 0 , cellX)] == "w":
+                if levelCharCheck(gridX, gridY, 1, "w") == True:
                     bCanContinue = False
             case 2: #Up
-                if levelList[level][clamp((gridY - 1) * cellX, 0, cellY*cellX) + gridX] == "w":
+                if levelCharCheck(gridX, gridY, 2, "w") == True:
                     bCanContinue = False
             case 3: #Down
-                if levelList[level][ clamp((gridY + 1) * cellX, 0, cellY*cellX) + gridX ] == "w":
+                if levelCharCheck(gridX, gridY, 3, "w") == True:
                     bCanContinue = False
 
 def addScore(amount):
@@ -303,7 +306,7 @@ def removeFood(amount):
     
 def addLevel(amount):
     global level
-    level += amount
+    level = (level + amount) % len(levelList)
 
 #General Setup and backdrop
 pygame.init()
@@ -366,7 +369,7 @@ man = Man(cellPx, cellPx, manStartX, manStartY, (255, 212, 123))
 manGroup = pygame.sprite.Group()
 manGroup.add(man)
 
-font = pygame.font.SysFont(None, 44)
+font = pygame.font.SysFont(None, 35 + scale*3)
 
 
 #Prelevel Setup
@@ -398,7 +401,15 @@ while True:
                 else:
                     paused = True
                 print("Pause Game")
-    
+            elif event.key == pygame.K_F2:
+                addLevel(1)
+                removeFood(currentFood)
+                setupLevel(levelList[level])
+                setupFood(levelList[level])
+                setupEnemy(levelList[level])
+                manX = manStartX
+                manY = manStartY
+                print("Next Level")
     ManGridCheckpoint(manX, manY) #Primary Movement for player character
     
     if bCanContinue == True and not paused:
@@ -415,10 +426,9 @@ while True:
     #Check for level completion
     if (currentFood <= 0):
         addLevel(1)
-        n = level % len(levelList)
-        setupLevel(levelList[n])
-        setupFood(levelList[n])
-        setupEnemy(levelList[n])
+        setupLevel(levelList[level])
+        setupFood(levelList[level])
+        setupEnemy(levelList[level])
         manX = manStartX
         manY = manStartY
         
@@ -434,7 +444,7 @@ while True:
     manGroup.draw(screen)
     #Draw Score
     scoreBoard = font.render("Score: " + str(score), True, (123,123,123))
-    screen.blit(scoreBoard, (screenWidth * .55, screenHeight * .05))
+    screen.blit(scoreBoard, (screenWidth * .75, screenHeight * .05))
     #Update
     if not paused:
         man.update()
