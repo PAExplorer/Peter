@@ -30,12 +30,18 @@ waitTime = 1
 scatterTime = 1000
 enemyTargX = 0
 enemyTargY = 0
-trackList = ["sound/Leap.wav","sound/Turns.wav","sound/Spooky.mp3"]
+trackList = ["sound/Leap.wav","sound/Turns.wav","sound/Spooky.wav"]
+cutSceneLock = False
+
+#Initialize some title changes
+pygame.display.set_caption('Pickaxe Pete')
+gameIcon = pygame.image.load('img/pick.png')
+pygame.display.set_icon(gameIcon)
 
 #Define some levels as strings
 level1Template =  "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 level1Template += "xwwwwwwwwwwwwwwwwwwwwwwwwwwww"
-level1Template += "xw............ww............w"
+level1Template += "xwp...........ww...........pw"
 level1Template += "xw.wwww.wwwww.ww.wwwww.wwww.w"
 level1Template += "xw.wxxw.wxxxw.ww.wxxxw.wxxw.w"
 level1Template += "xw.wwww.wwwww.ww.wwwww.wwww.w"
@@ -63,12 +69,12 @@ level1Template += "xwww.ww.ww.wwwwwwww.ww.ww.www"
 level1Template += "xw......ww....ww....ww......w"
 level1Template += "xw.wwwwwwwwww.ww.wwwwwwwwww.w"
 level1Template += "xw.wwwwwwwwww.ww.wwwwwwwwww.w"
-level1Template += "xw............ss............w"
+level1Template += "xwp...........ss...........pw"
 level1Template += "xwwwwwwwwwwwwwwwwwwwwwwwwwwww"
 
 level2Template = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 level2Template += "xwwwwwwwwwwwwwwwwwwwwwwwwwwww"
-level2Template += "xws.......wwwwwwwwww.......sw"
+level2Template += "xws...p...wwwwwwwwww...p...sw"
 level2Template += "xw.wwwwww.....ww.....wwwwww.w"
 level2Template += "xw.wwwwwwwwww.ww.wwwwwwwwww.w"
 level2Template += "xw.wwwwwwwwww.ww.wwwwwwwwww.w"
@@ -96,7 +102,7 @@ level2Template += "xwww.ww.ww.wwwwwwww.ww.ww.www"
 level2Template += "xw............ww............w"
 level2Template += "xw.wwww.wwwww.ww.wwwww.wwww.w"
 level2Template += "xw.wwww.wwwww.ww.wwwww.wwww.w"
-level2Template += "xws........................sw"
+level2Template += "xws.......p........p.......sw"
 level2Template += "xwwwwwwwwwwwwwwwwwwwwwwwwwwww"
 
 level3Template = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
@@ -105,7 +111,7 @@ level3Template += "xw...wwwwwwwwwwwwwwwwwwww...w"
 level3Template += "xw.w.........wwww.........w.w"
 level3Template += "xw.w.wwwwwww.wwww.wwwwwww.w.w"
 level3Template += "xw.w.wwwwwww.wwww.wwwwwww.w.w"
-level3Template += "xw.w....ww..........ww....w.w"
+level3Template += "xw.w.p..ww..........ww..p.w.w"
 level3Template += "xw.w.ww.ww.ww.ww.ww.ww.ww.w.w"
 level3Template += "xw.w.ww.ww.ww.ww.ww.ww.ww.w.w"
 level3Template += "xw...ww.......ww.......ww...w"
@@ -126,7 +132,7 @@ level3Template += "xwww.ww.wwwwwwwwwwwwww.ww.www"
 level3Template += "xwww.ww.......xx.......ww.www"
 level3Template += "xwww.wwwww.wwwwwwww.wwwww.www"
 level3Template += "xwww.wwwww.wwwwwwww.wwwww.www"
-level3Template += "xw..........................w"
+level3Template += "xw...p..................p...w"
 level3Template += "xw.wwwwwwwwww.ww.wwwwwwwwww.w"
 level3Template += "xw.wwwwwwwwww.ww.wwwwwwwwww.w"
 level3Template += "xw............ww............w"
@@ -153,11 +159,28 @@ class Food(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(self.image, (cellPx, cellPx))
         self.rect = self.image.get_rect()
         self.rect.topleft = [pos_x, pos_y]
+        self.getSound = pygame.mixer.Sound("sound/get.wav")
     def update(self):
         blockingHit = pygame.sprite.spritecollide(man, foodGroup, True)
         for block in blockingHit:
+            pygame.mixer.Sound.play(self.getSound)
             addScore(10)
             removeFood(1)
+
+class Pick(pygame.sprite.Sprite):
+    def __init__(self, width, height, pos_x, pos_y):
+        super().__init__()
+        self.image = pygame.Surface([width, height])
+        self.image = pygame.image.load("img/pick.png")
+        self.image = pygame.transform.scale(self.image, (cellPx, cellPx))
+        self.rect = self.image.get_rect()
+        self.rect.topleft = [pos_x, pos_y]
+        self.getSound = pygame.mixer.Sound("sound/pickPickup.wav")
+    def update(self):
+        blockingHit = pygame.sprite.spritecollide(man, pickGroup, True)
+        for block in blockingHit:
+            pygame.mixer.Sound.play(self.getSound)
+            addScore(100)
 
 class Man(pygame.sprite.Sprite):
     def __init__(self, width, height, pos_x, pos_y, color):
@@ -252,6 +275,7 @@ class Switch(pygame.sprite.Sprite):
         super().__init__()
         self.image = pygame.Surface([width, height])
         self.image = pygame.image.load("img/Switch.png")
+        self.getSound = pygame.mixer.Sound("sound/switch.wav")
         self.image = pygame.transform.scale(self.image, (cellPx, cellPx))
         self.rect = self.image.get_rect()
         self.rect.topleft = [pos_x, pos_y]
@@ -260,6 +284,8 @@ class Switch(pygame.sprite.Sprite):
     def update(self):
         blockingHit = pygame.sprite.spritecollide(man, switchGroup, False)
         for block in blockingHit:
+            if doorsOpen == False:
+                pygame.mixer.Sound.play(self.getSound)
             openDoors(True)
         if doorsOpen == True:
             self.image = pygame.image.load("img/SwitchFlip.png")
@@ -320,6 +346,7 @@ def ManGridCheckpoint(locX, locY): #location X and location Y of the player char
         #First Check if we're on a food
         newFood.update()
         newSwitch.update()
+        newPick.update()
         match setDir:#Check if we can change our existing movement
             case 0: #Left
                 if levelCollideCheck(gridX, gridY, 0) == False:
@@ -366,6 +393,9 @@ def openDoors(boolIn):
     print(doorsOpen)
     #pygame.sprite.Group.empty(switchGroup)
     #pygame.sprite.Group.empty(doorGroup)
+def cutSceneLockSet(boolIn):
+    global cutSceneLock
+    cutSceneLock = boolIn
 
 def removeLife(amount):
     global lives
@@ -375,8 +405,11 @@ def removeLife(amount):
     setupDoors(levelList[level])
     setupSwitch(levelList[level])
     setManLocation(manStartX, manStartY)
-    setWaitTime(3)
-    pygame.mixer.music.stop()
+    setWaitTime(1)
+
+def resetLife(amount):
+    global lives
+    lives = amount
 
 def setManLocation(pos_x, pos_y):
     global manX
@@ -403,6 +436,7 @@ screen.fill((14,14,14))
 wallGroup = pygame.sprite.Group()
 def setupLevel(level):
     global wallGroup
+    pygame.mixer.music.stop()
     pygame.mixer.music.load(trackList[random.randint(0,len(trackList) - 1)])
     pygame.mixer.music.play(-1)
     pygame.sprite.Group.empty(wallGroup)
@@ -480,6 +514,20 @@ def setupEnemy(level):
                 newEnemy = Enemy(cellPx, cellPx, xP * cellPx, yP * cellPx, setColor)
                 enemyGroup.add(newEnemy)
 
+#set up pellet group
+pickGroup = pygame.sprite.Group()
+def setupPick(level):
+    global pickGroup
+    global newPick
+    pygame.sprite.Group.empty(pickGroup)
+    xP = 0
+    yP = 0
+    for xP in range(0, cellX):
+        for yP in range(0, cellY):
+            if level[(yP * cellX) + xP] == "p":
+                newPick = Pick(cellPx, cellPx, xP * cellPx, yP * cellPx)
+                pickGroup.add(newPick)
+
 #set up Peter group
 man = Man(cellPx, cellPx, manStartX, manStartY, (255, 212, 123))
 manGroup = pygame.sprite.Group()
@@ -487,114 +535,140 @@ manGroup.add(man)
 
 font = pygame.font.SysFont(None, 35 + scale*3)
 
-
-
-
-
-
-
-#Prelevel Setup
-setupLevel(levelList[0])
-setupFood(levelList[0])
-setupEnemy(levelList[0])
-setupDoors(levelList[0])
-setupSwitch(levelList[0])
-
-#Primary Game Loop
-while lives > 0:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
-                man.setLeft()
-                setDir = 0
-            elif event.key == pygame.K_RIGHT:
-                man.setRight()
-                setDir = 1
-            elif event.key == pygame.K_UP:
-                man.setUp()
-                setDir = 2
-            elif event.key == pygame.K_DOWN:
-                man.setDown()
-                setDir = 3
-            elif event.key == pygame.K_F11:
-                if paused:
-                    paused = False
-                else:
-                    paused = True
-                print("Pause Game")
-            elif event.key == pygame.K_F2:
-                addLevel(1)
-                removeFood(currentFood)
-                setupLevel(levelList[level])
-                setupFood(levelList[level])
-                setupEnemy(levelList[level])
-                setupSwitch(levelList[level])
-                setupDoors(levelList[level])
-                manX = manStartX
-                manY = manStartY
-                print("Next Level")
-    ManGridCheckpoint(manX, manY) #Primary Movement for player character
+while True:
+    ####    Main Menu    ####
+    mainMenu = True
+    background = pygame.image.load("img/Mountain.png")
+    DEFAULT_BACKGROUND_SIZE = (screenWidth, screenHeight)
+    background = pygame.transform.scale(background, DEFAULT_BACKGROUND_SIZE)
+    pygame.mouse.set_visible(False)
+    while mainMenu:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.KEYDOWN: 
+                mainMenu = False
+        pygame.display.flip()
+        screen.blit(background,(0,0))
+        pygame.display.flip()
+        clock.tick(10)
     
+    ####    Reset Relevant Variables    ####
+    mainMenu = True
+    resetLife(3)
+    removeFood(currentFood)
+    addLevel(-level)
+    addScore(-score)
+    openDoors(False)
     
-    #Toggle Scatter Mode for enemies
-    if scatterTime > 300:
-        setEnemyTarg(manX, manY)
-    elif scatterTime <= 300:
-        setEnemyTarg(random.randint(0, cellX) * cellPx,random.randint(0, cellY) * cellPx)
-        if scatterTime <= 0:
-            scatterTime = 1000
-    print(scatterTime)
-    if bCanContinue == True and not paused:
-        match peterDir:
-            case 0: #Left
-                manX = manX - 3
-            case 1: #Right
-                manX = manX + 3
-            case 2: #Up
-                manY = manY - 3
-            case 3: #Down
-                manY = manY + 3
+    ####    Primary Game    ####    
+    #Prelevel Setup
+    setupLevel(levelList[0])
+    setupFood(levelList[0])
+    setupEnemy(levelList[0])
+    setupDoors(levelList[0])
+    setupSwitch(levelList[0])
+    setupPick(levelList[0])
 
-    #Check for level completion
-    if (currentFood <= 0):
-        addLevel(1)
-        setupLevel(levelList[level])
-        setupFood(levelList[level])
-        setupEnemy(levelList[level])
-        setupDoors(levelList[level])
-        setupSwitch(levelList[level])
-        manX = manStartX
-        manY = manStartY
+    #Primary Game Loop
+    while lives > 0:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_LEFT:
+                    man.setLeft()
+                    setDir = 0
+                elif event.key == pygame.K_RIGHT:
+                    man.setRight()
+                    setDir = 1
+                elif event.key == pygame.K_UP:
+                    man.setUp()
+                    setDir = 2
+                elif event.key == pygame.K_DOWN:
+                    man.setDown()
+                    setDir = 3
+                elif event.key == pygame.K_F11:
+                    if paused:
+                        paused = False
+                    else:
+                        paused = True
+                    print("Pause Game")
+                elif event.key == pygame.K_F2:
+                    addLevel(1)
+                    removeFood(currentFood)
+                    setupLevel(levelList[level])
+                    setupFood(levelList[level])
+                    setupEnemy(levelList[level])
+                    setupSwitch(levelList[level])
+                    setupDoors(levelList[level])
+                    setupPick(levelList[level])
+                    manX = manStartX
+                    manY = manStartY
+                    print("Next Level")
+        ManGridCheckpoint(manX, manY) #Primary Movement for player character
         
-    #Draw Background
-    pygame.display.flip()
-    screen.fill((14,14,14))
-    #screen.blit(background, (0,0))
-    wallGroup.draw(screen)
-    foodGroup.draw(screen)
-    switchGroup.draw(screen)
-    doorGroup.draw(screen)
-    #Draw Enemies
-    enemyGroup.draw(screen)
-    #Draw Peter
-    manGroup.draw(screen)
-    #Draw Score
-    screenText = font.render("Score: " + str(score), True, (123,123,123))
-    screen.blit(screenText, (screenWidth * .75, screenHeight * .05))
-    screenText = font.render("Lives: " + str(lives), True, (123,123,123))
-    screen.blit(screenText, (screenWidth * .75, screenHeight * .1))
-    #Update
-    if not paused:
-        man.update()
-        enemyGroup.update()
-        doorGroup.update()
-        switchGroup.update()
-        scatterTime -= 1
-    #Wait if needed
-    time.sleep(waitTime)
-    setWaitTime(0)
-    clock.tick(clockTickSet)
+        
+        #Toggle Scatter Mode for enemies
+        if scatterTime > 300:
+            setEnemyTarg(manX, manY)
+        elif scatterTime <= 300:
+            setEnemyTarg(random.randint(0, cellX) * cellPx,random.randint(0, cellY) * cellPx)
+            if scatterTime <= 0:
+                scatterTime = 1000
+        print(scatterTime)
+        if bCanContinue == True and not paused and not cutSceneLock:
+            match peterDir:
+                case 0: #Left
+                    manX = manX - 3
+                case 1: #Right
+                    manX = manX + 3
+                case 2: #Up
+                    manY = manY - 3
+                case 3: #Down
+                    manY = manY + 3
 
+        #Check for level completion
+        if (currentFood <= 0):
+            addLevel(1)
+            setupLevel(levelList[level])
+            setupFood(levelList[level])
+            setupEnemy(levelList[level])
+            setupDoors(levelList[level])
+            setupSwitch(levelList[level])
+            setupPick(levelList[level])
+            manX = manStartX
+            manY = manStartY
+            
+        #Draw Background
+        pygame.display.flip()
+        screen.fill((14,14,14))
+        #screen.blit(background, (0,0))
+        wallGroup.draw(screen)
+        foodGroup.draw(screen)
+        switchGroup.draw(screen)
+        doorGroup.draw(screen)
+        pickGroup.draw(screen)
+        #Draw Enemies
+        enemyGroup.draw(screen)
+        #Draw Peter
+        manGroup.draw(screen)
+        #Draw Score
+        screenText = font.render("Score: " + str(score), True, (123,123,123))
+        screen.blit(screenText, (screenWidth * .75, screenHeight * .05))
+        screenText = font.render("Lives: " + str(lives), True, (123,123,123))
+        screen.blit(screenText, (screenWidth * .75, screenHeight * .1))
+        #Update
+        if not paused and not cutSceneLock:
+            man.update()
+            enemyGroup.update()
+            doorGroup.update()
+            switchGroup.update()
+            pickGroup.update()
+            scatterTime -= 1
+        #Wait if needed
+        time.sleep(waitTime)
+        setWaitTime(0)
+        clock.tick(clockTickSet)
