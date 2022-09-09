@@ -1,4 +1,4 @@
-screenScale = 3
+screenScale = 5
 
 level4Template = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 level4Template += "xwwwwwwwwwwwwwwwwwwwwwwwwwwww"
