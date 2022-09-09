@@ -3,10 +3,10 @@
 #   Sep 2022                                        #
 
 #Initialize Modules
-import pygame, sys, random, time
+import pygame, sys, random, time, peterConfig
 
 #Define some variables
-scale = 3
+scale = peterConfig.screenScale
 screenWidth = int(600 + (scale * 200)) #=1200
 screenHeight = int(500 + (scale * 100)) #=600
 cellX = 29
@@ -22,7 +22,7 @@ bCanContinue = True
 score = 0
 currentFood = 0
 level = 0
-clockTickSet = int(30 + (scale * 30))
+clockTickSet = int(10 + (scale * 30))
 paused = False
 doorsOpen = False
 lives = 3
@@ -30,7 +30,8 @@ waitTime = 1
 scatterTime = 1000
 enemyTargX = 0
 enemyTargY = 0
-trackList = ["sound/Leap.wav","sound/Turns.wav","sound/Spooky.wav"]
+trackList = ["sound/Leap.wav","sound/Turns.wav","sound/nightshift.wav","sound/Kalimba.wav","sound/Spooky.wav"]
+#Good: "sound/Leap.wav","sound/Turns.wav","sound/nightshift.wav","sound/Kalimba.wav","sound/Spooky.wav"
 cutSceneLock = False
 
 #Initialize some title changes
@@ -138,7 +139,40 @@ level3Template += "xw.wwwwwwwwww.ww.wwwwwwwwww.w"
 level3Template += "xw............ww............w"
 level3Template += "xwwwwwwwwwwwwwwwwwwwwwwwwwwww"
 
-levelList = [level1Template, level2Template, level3Template]
+level4Template = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+level4Template += "xwwwwwwwwwwwwwwwwwwwwwwwwwwww"
+level4Template += "xw...p..p..p......p..p..p...w"
+level4Template += "xw.ww.ww.ww.wwwwww.ww.ww.ww.w"
+level4Template += "xw.ww.ww.ww.wwwwww.ww.ww.ww.w"
+level4Template += "xw...p..p..p..ww..p..p..p...w"
+level4Template += "xw.ww.ww.ww.wwwwww.ww.ww.ww.w"
+level4Template += "xw.ww.ww.ww.wwwwww.ww.ww.ww.w"
+level4Template += "xw...p..p..p..ww..p..p..p...w"
+level4Template += "xw.ww.ww.ww.wwwwww.ww.ww.ww.w"
+level4Template += "xw.ww.ww.ww.wwwwww.ww.ww.ww.w"
+level4Template += "xw..........................w"
+level4Template += "xwgwwwwwwwwwwwwwwwwwwwwwwwwgw"
+level4Template += "xw..........................w"
+level4Template += "xw.wwww.wwwwwwwwwwwwww.wwww.w"
+level4Template += "xw.wwww.wwwwwwwwwwwwww.wwww.w"
+level4Template += "xw......exxxxxeexxxxxe......w"
+level4Template += "xwgwwwwwwwwwwwwwwwwwwwwwwwwgw"
+level4Template += "xw.......swwwwwwwwwws.......w"
+level4Template += "xw.wwwwww.wwwwwwwwww.wwwwww.w"
+level4Template += "xw.wwwwww.wwwwwwwwww.wwwwww.w"
+level4Template += "xw.wwwwww.....ww.....wwwwww.w"
+level4Template += "xw........www.ww.www........w"
+level4Template += "xwww.wwwwwwww.ww.wwwwwwww.www"
+level4Template += "xwww.wwwwwwww.xx.wwwwwwww.wxx"
+level4Template += "xxxw......www.ww.www......wxx"
+level4Template += "xxxw.wwww.www.ww.www.wwww.wxx"
+level4Template += "xxxw.wwww.www.ww.www.wwww.wxx"
+level4Template += "xxxw.wwww.www.ww.www.wwww.wxx"
+level4Template += "xxxw.wwww.www.ww.www.wwww.wxx"
+level4Template += "xxxw..........ww..........wxx"
+level4Template += "xxxwwwwwwwwwwwwwwwwwwwwwwwwxx"
+
+levelList = [level1Template, level2Template, level3Template, level4Template]
 
 #Classes used
 class Wall(pygame.sprite.Sprite):
