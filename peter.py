@@ -35,6 +35,7 @@ trackList = ["sound/Leap.wav","sound/Turns.wav","sound/nightshift.wav","sound/Ka
 cutSceneLock = True
 nVolume = 0.5
 
+print(str(screenWidth) + " x " + str(screenHeight))
 #Initialize some title changes
 pygame.display.set_caption('Pickaxe Pete / F3~F4 Scale game / F5~F6 Sound level / F11 Pause')
 gameIcon = pygame.image.load('img/pick.png')
@@ -653,6 +654,8 @@ while True:
                     setNewScale(-1)
                 elif event.key == pygame.K_F4:
                     setNewScale(1)
+                elif event.key == pygame.K_ESCAPE:
+                    exit()
         pygame.display.flip()
         screen.blit(background,(0,0))
         pygame.display.flip()
@@ -723,6 +726,9 @@ while True:
                 elif event.key == pygame.K_F6:
                     nVolume = clamp(nVolume + .1, 0 ,1)
                     pygame.mixer.music.set_volume(nVolume)
+                    
+                elif event.key == pygame.K_ESCAPE:
+                    lives = 0
         ManGridCheckpoint(manX, manY) #Primary Movement for player character
         manAnimFrame += 1
         if manAnimFrame > 300000:
