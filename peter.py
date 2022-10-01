@@ -42,170 +42,171 @@ gameIcon = pygame.image.load('img/pick.png')
 pygame.display.set_icon(gameIcon)
 
 #Define some levels as strings
-level1Template =  "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-level1Template += "xwwwwwwwwwwwwwwwwwwwwwwwwwwww"
-level1Template += "xwp...........ww...........pw"
-level1Template += "xw.wwww.wwwww.ww.wwwww.wwww.w"
-level1Template += "xw.wxxw.wxxxw.ww.wxxxw.wxxw.w"
-level1Template += "xw.wwww.wwwww.ww.wwwww.wwww.w"
-level1Template += "xw..........................w"
-level1Template += "xw.wwww.ww.wwwwwwww.ww.wwww.w"
-level1Template += "xw.wwww.ww.wwwwwwww.ww.wwww.w"
-level1Template += "xw......ww....ww....ww......w"
-level1Template += "xwwwwww.wwwwwxwwxwwwww.wwwwww"
-level1Template += "xxxxxxw.wwwwwxwwxwwwww.wxxxxx"
-level1Template += "xxxxxxw.wwxxxxxxxxxxww.wxxxxx"
-level1Template += "xxxxxxw.wwxwwwwwwwwxww.wxxxxx"
-level1Template += "xxxxxxw.wwxwwwwwwwwxww.wxxxxx"
-level1Template += "xxxxxxw.xxxxxxxexxxxxx.wxxxxx"
-level1Template += "xxxxxxwgwwwwwwwwwwwwwwgwxxxxx"
-level1Template += "xxxxxxw.wwwwwwwwwwwwww.wxxxxx"
-level1Template += "xxxxxxw.ww..........ww.wxxxxx"
-level1Template += "xxxxxxw.ww.wwwwwwww.ww.wxxxxx"
-level1Template += "xwwwwww.ww.wwwwwwww.ww.wwwwww"
-level1Template += "xw............ww............w"
-level1Template += "xw.wwww.wwwww.ww.wwwww.wwww.w"
-level1Template += "xw.wwww.wwwww.ww.wwwww.wwww.w"
-level1Template += "xw...ww.......xx.......ww...w"
-level1Template += "xwww.ww.ww.wwwwwwww.ww.ww.www"
-level1Template += "xwww.ww.ww.wwwwwwww.ww.ww.www"
-level1Template += "xw......ww....ww....ww......w"
-level1Template += "xw.wwwwwwwwww.ww.wwwwwwwwww.w"
-level1Template += "xw.wwwwwwwwww.ww.wwwwwwwwww.w"
-level1Template += "xwp...........ss...........pw"
-level1Template += "xwwwwwwwwwwwwwwwwwwwwwwwwwwww"
+if True:
+    level1Template =  "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    level1Template += "xwwwwwwwwwwwwwwwwwwwwwwwwwwww"
+    level1Template += "xwp...........ww...........pw"
+    level1Template += "xw.wwww.wwwww.ww.wwwww.wwww.w"
+    level1Template += "xw.wxxw.wxxxw.ww.wxxxw.wxxw.w"
+    level1Template += "xw.wwww.wwwww.ww.wwwww.wwww.w"
+    level1Template += "xw..........................w"
+    level1Template += "xw.wwww.ww.wwwwwwww.ww.wwww.w"
+    level1Template += "xw.wwww.ww.wwwwwwww.ww.wwww.w"
+    level1Template += "xw......ww....ww....ww......w"
+    level1Template += "xwwwwww.wwwwwxwwxwwwww.wwwwww"
+    level1Template += "xxxxxxw.wwwwwxwwxwwwww.wxxxxx"
+    level1Template += "xxxxxxw.wwxxxxxxxxxxww.wxxxxx"
+    level1Template += "xxxxxxw.wwxwwwwwwwwxww.wxxxxx"
+    level1Template += "xxxxxxw.wwxwwwwwwwwxww.wxxxxx"
+    level1Template += "xxxxxxw.xxxxxxnexxxxxx.wxxxxx"
+    level1Template += "xxxxxxwgwwwwwwwwwwwwwwgwxxxxx"
+    level1Template += "xxxxxxw.wwwwwwwwwwwwww.wxxxxx"
+    level1Template += "xxxxxxw.ww..........ww.wxxxxx"
+    level1Template += "xxxxxxw.ww.wwwwwwww.ww.wxxxxx"
+    level1Template += "xwwwwww.ww.wwwwwwww.ww.wwwwww"
+    level1Template += "xw............ww............w"
+    level1Template += "xw.wwww.wwwww.ww.wwwww.wwww.w"
+    level1Template += "xw.wwww.wwwww.ww.wwwww.wwww.w"
+    level1Template += "xw...ww.......xx.......ww...w"
+    level1Template += "xwww.ww.ww.wwwwwwww.ww.ww.www"
+    level1Template += "xwww.ww.ww.wwwwwwww.ww.ww.www"
+    level1Template += "xw......ww....ww....ww......w"
+    level1Template += "xw.wwwwwwwwww.ww.wwwwwwwwww.w"
+    level1Template += "xw.wwwwwwwwww.ww.wwwwwwwwww.w"
+    level1Template += "xwp...........ss...........pw"
+    level1Template += "xwwwwwwwwwwwwwwwwwwwwwwwwwwww"
 
-level2Template = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-level2Template += "xwwwwwwwwwwwwwwwwwwwwwwwwwwww"
-level2Template += "xws...p...wwwwwwwwww...p...sw"
-level2Template += "xw.wwwwww.....ww.....wwwwww.w"
-level2Template += "xw.wwwwwwwwww.ww.wwwwwwwwww.w"
-level2Template += "xw.wwwwwwwwww.ww.wwwwwwwwww.w"
-level2Template += "xw......ww..........ww......w"
-level2Template += "xw.wwww.ww.wwwwwwww.ww.wwww.w"
-level2Template += "xw.wwww.ww.wwwwwwww.ww.wwww.w"
-level2Template += "xw............ww............w"
-level2Template += "xwwwwww.wwwwwgwwgwwwww.wwwwww"
-level2Template += "xxxxwww.wwwwwxwwxwwwww.wwwxxx"
-level2Template += "xxxxw...ww..........ww...wxxx"
-level2Template += "xxxxw.wwww.wwwggwww.wwww.wxxx"
-level2Template += "xxxxw.wxxw.wxxxxxxw.wxxw.wxxx"
-level2Template += "xxxxw.wxxw.wxxxxxxw.wxxw.wxxx"
-level2Template += "xxxxw.wxxw.wexxxxew.wxxw.wxxx"
-level2Template += "xwwww.wwww.wwwggwww.wwww.wwww"
-level2Template += "xw......ww..........ww......w"
-level2Template += "xw.wwww.wwwwwxwwxwwwww.wwww.w"
-level2Template += "xw.wwww.wwwwwgwwgwwwww.wwww.w"
-level2Template += "xw..........................w"
-level2Template += "xw.wwww.wwwww.ww.wwwww.wwww.w"
-level2Template += "xw.wwww.wwwww.ww.wwwww.wwww.w"
-level2Template += "xw...ww.ww....xx....ww.ww...w"
-level2Template += "xwww.ww.ww.wwwwwwww.ww.ww.www"
-level2Template += "xwww.ww.ww.wwwwwwww.ww.ww.www"
-level2Template += "xw............ww............w"
-level2Template += "xw.wwww.wwwww.ww.wwwww.wwww.w"
-level2Template += "xw.wwww.wwwww.ww.wwwww.wwww.w"
-level2Template += "xws.......p........p.......sw"
-level2Template += "xwwwwwwwwwwwwwwwwwwwwwwwwwwww"
+    level2Template = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    level2Template += "xwwwwwwwwwwwwwwwwwwwwwwwwwwww"
+    level2Template += "xws...p...wwwwwwwwww...p...sw"
+    level2Template += "xw.wwwwww.....ww.....wwwwww.w"
+    level2Template += "xw.wwwwwwwwww.ww.wwwwwwwwww.w"
+    level2Template += "xw.wwwwwwwwww.ww.wwwwwwwwww.w"
+    level2Template += "xw......ww..........ww......w"
+    level2Template += "xw.wwww.ww.wwwwwwww.ww.wwww.w"
+    level2Template += "xw.wwww.ww.wwwwwwww.ww.wwww.w"
+    level2Template += "xw............ww............w"
+    level2Template += "xwwwwww.wwwwwgwwgwwwww.wwwwww"
+    level2Template += "xxxxwww.wwwwwxwwxwwwww.wwwxxx"
+    level2Template += "xxxxw...ww..........ww...wxxx"
+    level2Template += "xxxxw.wwww.wwwggwww.wwww.wxxx"
+    level2Template += "xxxxw.wxxw.wxxxxxxw.wxxw.wxxx"
+    level2Template += "xxxxw.wxxw.wxxxxxxw.wxxw.wxxx"
+    level2Template += "xxxxw.wxxw.wexxxxew.wxxw.wxxx"
+    level2Template += "xwwww.wwww.wwwggwww.wwww.wwww"
+    level2Template += "xw......ww..........ww......w"
+    level2Template += "xw.wwww.wwwwwxwwxwwwww.wwww.w"
+    level2Template += "xw.wwww.wwwwwgwwgwwwww.wwww.w"
+    level2Template += "xw..........................w"
+    level2Template += "xw.wwww.wwwww.ww.wwwww.wwww.w"
+    level2Template += "xw.wwww.wwwww.ww.wwwww.wwww.w"
+    level2Template += "xw...ww.ww....xx....ww.ww...w"
+    level2Template += "xwww.ww.ww.wwwwwwww.ww.ww.www"
+    level2Template += "xwww.ww.ww.wwwwwwww.ww.ww.www"
+    level2Template += "xw............ww............w"
+    level2Template += "xw.wwww.wwwww.ww.wwwww.wwww.w"
+    level2Template += "xw.wwww.wwwww.ww.wwwww.wwww.w"
+    level2Template += "xws.......p........p.......sw"
+    level2Template += "xwwwwwwwwwwwwwwwwwwwwwwwwwwww"
 
-level3Template = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-level3Template += "xwwwwwwwwwwwwwwwwwwwwwwwwwwww"
-level3Template += "xw...wwwwwwwwwwwwwwwwwwww...w"
-level3Template += "xw.w.........wwww.........w.w"
-level3Template += "xw.w.wwwwwww.wwww.wwwwwww.w.w"
-level3Template += "xw.w.wwwwwww.wwww.wwwwwww.w.w"
-level3Template += "xw.w.p..ww..........ww..p.w.w"
-level3Template += "xw.w.ww.ww.ww.ww.ww.ww.ww.w.w"
-level3Template += "xw.w.ww.ww.ww.ww.ww.ww.ww.w.w"
-level3Template += "xw...ww.......ww.......ww...w"
-level3Template += "xwww.ww.ww.wwwwwwww.ww.ww.www"
-level3Template += "xwww.ww.ww.wwwwwwww.ww.ww.www"
-level3Template += "xwww.ww.ww..........ww.ww.www"
-level3Template += "xwww.ww.wwwwwwxxwwwwww.ww.www"
-level3Template += "xwww.ww.wwwwwwxxwwwwww.ww.www"
-level3Template += "xwww.ww.ww..........ww.ww.www"
-level3Template += "xwww.ww....wwwwwwww....ww.www"
-level3Template += "xwww.ww.wwwwwwwwwwwwww.ww.www"
-level3Template += "xwww.ww.wwwwwwwwwwwwww.ww.www"
-level3Template += "xwww.ww.wwwww....wwwww.ww.www"
-level3Template += "xwww.ww.......ww.......ww.www"
-level3Template += "xwwwswwswwwwwwwwwwwwwwswwswww"
-level3Template += "xwww.ww.gxxxxxeexxxxxg.ww.www"
-level3Template += "xwww.ww.wwwwwwwwwwwwww.ww.www"
-level3Template += "xwww.ww.......xx.......ww.www"
-level3Template += "xwww.wwwww.wwwwwwww.wwwww.www"
-level3Template += "xwww.wwwww.wwwwwwww.wwwww.www"
-level3Template += "xw...p..................p...w"
-level3Template += "xw.wwwwwwwwww.ww.wwwwwwwwww.w"
-level3Template += "xw.wwwwwwwwww.ww.wwwwwwwwww.w"
-level3Template += "xw............ww............w"
-level3Template += "xwwwwwwwwwwwwwwwwwwwwwwwwwwww"
+    level3Template = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    level3Template += "xwwwwwwwwwwwwwwwwwwwwwwwwwwww"
+    level3Template += "xw...wwwwwwwwwwwwwwwwwwww...w"
+    level3Template += "xw.w.........wwww.........w.w"
+    level3Template += "xw.w.wwwwwww.wwww.wwwwwww.w.w"
+    level3Template += "xw.w.wwwwwww.wwww.wwwwwww.w.w"
+    level3Template += "xw.w.p..ww..........ww..p.w.w"
+    level3Template += "xw.w.ww.ww.ww.ww.ww.ww.ww.w.w"
+    level3Template += "xw.w.ww.ww.ww.ww.ww.ww.ww.w.w"
+    level3Template += "xw...ww.......ww.......ww...w"
+    level3Template += "xwww.ww.ww.wwwwwwww.ww.ww.www"
+    level3Template += "xwww.ww.ww.wwwwwwww.ww.ww.www"
+    level3Template += "xwww.ww.ww..........ww.ww.www"
+    level3Template += "xwww.ww.wwwwwwxxwwwwww.ww.www"
+    level3Template += "xwww.ww.wwwwwwxxwwwwww.ww.www"
+    level3Template += "xwww.ww.ww..........ww.ww.www"
+    level3Template += "xwww.ww....wwwwwwww....ww.www"
+    level3Template += "xwww.ww.wwwwwwwwwwwwww.ww.www"
+    level3Template += "xwww.ww.wwwwwwwwwwwwww.ww.www"
+    level3Template += "xwww.ww.wwwww....wwwww.ww.www"
+    level3Template += "xwww.ww.......ww.......ww.www"
+    level3Template += "xwwwswwswwwwwwwwwwwwwwswwswww"
+    level3Template += "xwww.ww.gxxxxxeexxxxxg.ww.www"
+    level3Template += "xwww.ww.wwwwwwwwwwwwww.ww.www"
+    level3Template += "xwww.ww.......xx.......ww.www"
+    level3Template += "xwww.wwwww.wwwwwwww.wwwww.www"
+    level3Template += "xwww.wwwww.wwwwwwww.wwwww.www"
+    level3Template += "xw...p..................p...w"
+    level3Template += "xw.wwwwwwwwww.ww.wwwwwwwwww.w"
+    level3Template += "xw.wwwwwwwwww.ww.wwwwwwwwww.w"
+    level3Template += "xw............ww............w"
+    level3Template += "xwwwwwwwwwwwwwwwwwwwwwwwwwwww"
 
-level4Template = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-level4Template += "xwwwwwwwwwwwwwwwwwwwwwwwwwwww"
-level4Template += "xw...p..p..p......p..p..p...w"
-level4Template += "xw.ww.ww.ww.wwwwww.ww.ww.ww.w"
-level4Template += "xw.ww.ww.ww.wwwwww.ww.ww.ww.w"
-level4Template += "xw...p..p..p..ww..p..p..p...w"
-level4Template += "xw.ww.ww.ww.wwwwww.ww.ww.ww.w"
-level4Template += "xw.ww.ww.ww.wwwwww.ww.ww.ww.w"
-level4Template += "xw...p..p..p..ww..p..p..p...w"
-level4Template += "xw.ww.ww.ww.wwwwww.ww.ww.ww.w"
-level4Template += "xw.ww.ww.ww.wwwwww.ww.ww.ww.w"
-level4Template += "xw..........................w"
-level4Template += "xwgwwwwwwwwwwwwwwwwwwwwwwwwgw"
-level4Template += "xw..........................w"
-level4Template += "xw.wwww.wwwwwwwwwwwwww.wwww.w"
-level4Template += "xw.wwww.wwwwwwwwwwwwww.wwww.w"
-level4Template += "xw......exxxxxeexxxxxe......w"
-level4Template += "xwgwwwwwwwwwwwwwwwwwwwwwwwwgw"
-level4Template += "xw.......swwwwwwwwwws.......w"
-level4Template += "xw.wwwwww.wwwwwwwwww.wwwwww.w"
-level4Template += "xw.wwwwww.wwwwwwwwww.wwwwww.w"
-level4Template += "xw.wwwwww.....ww.....wwwwww.w"
-level4Template += "xw........www.ww.www........w"
-level4Template += "xwww.wwwwwwww.ww.wwwwwwww.www"
-level4Template += "xwww.wwwwwwww.xx.wwwwwwww.wxx"
-level4Template += "xxxw......www.ww.www......wxx"
-level4Template += "xxxw.wwww.www.ww.www.wwww.wxx"
-level4Template += "xxxw.wwww.www.ww.www.wwww.wxx"
-level4Template += "xxxw.wwww.www.ww.www.wwww.wxx"
-level4Template += "xxxw.wwww.www.ww.www.wwww.wxx"
-level4Template += "xxxw..........ww..........wxx"
-level4Template += "xxxwwwwwwwwwwwwwwwwwwwwwwwwxx"
+    level4Template = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    level4Template += "xwwwwwwwwwwwwwwwwwwwwwwwwwwww"
+    level4Template += "xw...p..p..p......p..p..p...w"
+    level4Template += "xw.ww.ww.ww.wwwwww.ww.ww.ww.w"
+    level4Template += "xw.ww.ww.ww.wwwwww.ww.ww.ww.w"
+    level4Template += "xw...p..p..p..ww..p..p..p...w"
+    level4Template += "xw.ww.ww.ww.wwwwww.ww.ww.ww.w"
+    level4Template += "xw.ww.ww.ww.wwwwww.ww.ww.ww.w"
+    level4Template += "xw...p..p..p..ww..p..p..p...w"
+    level4Template += "xw.ww.ww.ww.wwwwww.ww.ww.ww.w"
+    level4Template += "xw.ww.ww.ww.wwwwww.ww.ww.ww.w"
+    level4Template += "xw..........................w"
+    level4Template += "xwgwwwwwwwwwwwwwwwwwwwwwwwwgw"
+    level4Template += "xw..........................w"
+    level4Template += "xw.wwww.wwwwwwwwwwwwww.wwww.w"
+    level4Template += "xw.wwww.wwwwwwwwwwwwww.wwww.w"
+    level4Template += "xw......exxxxxeexxxxxe......w"
+    level4Template += "xwgwwwwwwwwwwwwwwwwwwwwwwwwgw"
+    level4Template += "xw.......swwwwwwwwwws.......w"
+    level4Template += "xw.wwwwww.wwwwwwwwww.wwwwww.w"
+    level4Template += "xw.wwwwww.wwwwwwwwww.wwwwww.w"
+    level4Template += "xw.wwwwww.....ww.....wwwwww.w"
+    level4Template += "xw........www.ww.www........w"
+    level4Template += "xwww.wwwwwwww.ww.wwwwwwww.www"
+    level4Template += "xwww.wwwwwwww.xx.wwwwwwww.wxx"
+    level4Template += "xxxw......www.ww.www......wxx"
+    level4Template += "xxxw.wwww.www.ww.www.wwww.wxx"
+    level4Template += "xxxw.wwww.www.ww.www.wwww.wxx"
+    level4Template += "xxxw.wwww.www.ww.www.wwww.wxx"
+    level4Template += "xxxw.wwww.www.ww.www.wwww.wxx"
+    level4Template += "xxxw..........ww..........wxx"
+    level4Template += "xxxwwwwwwwwwwwwwwwwwwwwwwwwxx"
 
-level5Template = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-level5Template += "xwwwwwwwwwwwwwwwwwwwwwwwwwwww"
-level5Template += "xwegxxxxxxxxxxpsxxxxxxxxxxgew"
-level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
-level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
-level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
-level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
-level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
-level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
-level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
-level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
-level5Template += "xwegxxxxxxxxxxxgxxxxxxxxxxgew"
-level5Template += "xwegxxxxxxxxxxg.gxxxxxxxxxgew"
-level5Template += "xwegxxxxxxxxxxxgxxxxxxxxxxgew"
-level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
-level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
-level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
-level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
-level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
-level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
-level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
-level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
-level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
-level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
-level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
-level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
-level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
-level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
-level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
-level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
-level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
-level5Template += "xwwwwwwwwwwwwwwwwwwwwwwwwwwww"
+    level5Template = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    level5Template += "xwwwwwwwwwwwwwwwwwwwwwwwwwwww"
+    level5Template += "xwegxxxxxxxxxxpsxxxxxxxxxxgew"
+    level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
+    level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
+    level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
+    level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
+    level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
+    level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
+    level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
+    level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
+    level5Template += "xwegxxxxxxxxxxxgxxxxxxxxxxgew"
+    level5Template += "xwegxxxxxxxxxxg.gxxxxxxxxxgew"
+    level5Template += "xwegxxxxxxxxxxxgxxxxxxxxxxgew"
+    level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
+    level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
+    level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
+    level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
+    level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
+    level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
+    level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
+    level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
+    level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
+    level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
+    level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
+    level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
+    level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
+    level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
+    level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
+    level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
+    level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
+    level5Template += "xwwwwwwwwwwwwwwwwwwwwwwwwwwww"
 
 levelList = [level1Template, level2Template, level3Template, level4Template, level5Template]
 
@@ -289,17 +290,17 @@ class Enemy(pygame.sprite.Sprite): #Enemy(cellPx, cellPx, xP * cellPx, yP * cell
         self.getSound = pygame.mixer.Sound("sound/hit.wav")
     def update(self):
         blockingHit = pygame.sprite.spritecollide(man, enemyGroup, False)
-        for block in blockingHit:
+        for block in blockingHit: #Collisions with player cause death to player
             self.getSound.set_volume(nVolume)
             pygame.mixer.Sound.play(self.getSound)
             removeLife(1)
         
-        if int(self.ePosX % cellPx) == 0 and int(self.ePosY % cellPx) == 0:
+        if int(self.ePosX % cellPx) == 0 and int(self.ePosY % cellPx) == 0: #When aligned with a grid location
             #Code to find direction should go here
             self.eGridX = (self.ePosX)/cellPx
             self.eGridY = (self.ePosY)/cellPx
             
-            if self.ePosX > enemyTargX and levelCollideCheck(self.eGridX, self.eGridY, 0) == False and self.eDirection != 1:
+            if self.ePosX > enemyTargX and levelCollideCheck(self.eGridX, self.eGridY, 0) == False and self.eDirection != 1: #Set direction towards the target
                 self.eDirection = 0
             elif self.ePosX < enemyTargX and levelCollideCheck(self.eGridX, self.eGridY, 1) == False and self.eDirection != 0:
                 self.eDirection = 1
@@ -324,6 +325,110 @@ class Enemy(pygame.sprite.Sprite): #Enemy(cellPx, cellPx, xP * cellPx, yP * cell
             case 4:
                 print("Can't move!")
         self.rect.topleft = [self.ePosX, self.ePosY]
+
+class NagaEnemy(pygame.sprite.Sprite):
+    def __init__(self, width, height, pos_x, pos_y, color):
+        super().__init__()
+        self.image = pygame.Surface([width,height])
+        self.image.fill(color)
+        self.rect = self.image.get_rect()
+        self.rect.topleft = [pos_x, pos_y]
+        self.eDirection = 0
+        self.eI = 0
+        self.ePosX = pos_x
+        self.ePosY = pos_y
+        self.eGridX = 0
+        self.eGridY = 0
+        self.getSound = pygame.mixer.Sound("sound/hit.wav")
+    def update(self):
+        blockingHit = pygame.sprite.spritecollide(man, nagaGroup, False)
+        for block in blockingHit: #Collisions with player cause death to player
+            self.getSound.set_volume(nVolume)
+            pygame.mixer.Sound.play(self.getSound)
+            removeLife(1)
+        
+        if int(self.ePosX % cellPx) == 0 and int(self.ePosY % cellPx) == 0: #When aligned with a grid location
+            #Code to find direction should go here
+            self.eGridX = (self.ePosX)/cellPx
+            self.eGridY = (self.ePosY)/cellPx
+            
+            if self.ePosX > enemyTargX and levelCollideCheck(self.eGridX, self.eGridY, 0) == False and self.eDirection != 1: #Set direction towards the target
+                self.eDirection = 0
+            elif self.ePosX < enemyTargX and levelCollideCheck(self.eGridX, self.eGridY, 1) == False and self.eDirection != 0:
+                self.eDirection = 1
+            elif self.ePosY > enemyTargY and levelCollideCheck(self.eGridX, self.eGridY, 2) == False and self.eDirection != 3:
+                self.eDirection = 2
+            elif self.ePosY < enemyTargY and levelCollideCheck(self.eGridX, self.eGridY, 3) == False and self.eDirection != 2:
+                self.eDirection = 3
+            else:
+                while levelCollideCheck(self.eGridX, self.eGridY, self.eDirection) == True:
+                    self.eDirection = random.randint(0,3)
+            
+            #Draw "rays"
+            nagX = self.eGridX #Check these X grid positions
+            nagB = True #Boolean
+            nagCW = False #Check Wall
+            for nagXP in range(20): #check 10 squares away from ourselves in both directions~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~You are here!
+                if nagB is True:
+                    nagX = nagX + nagXP
+                    nagB = False
+                else:
+                    nagX = nagX - nagXP
+                    nagB = True
+                
+                if levelList[level][int(self.eGridY * cellX  + nagX)] != "w" and nagCW == False:
+                    setupTemp(nagX, self.eGridY, False)
+                else:
+                    nagCW = True
+                
+            nagY = self.eGridY #Check these X grid positions
+            nagB = True #Boolean
+            nagCW = False #Check Wall
+            for nagYP in range(20): 
+                if nagB is True:
+                    nagY = nagY + nagYP
+                    nagB = False
+                else:
+                    nagY = nagY - nagYP
+                    nagB = True
+                
+                if levelList[level][int(nagY * cellX  + self.eGridX)] != "w" and nagCW == False:
+                    setupTemp(self.eGridX, nagY, False)
+                else:
+                    nagCW = True   
+            
+        
+        match self.eDirection: #The naga moves a 1px per update as opposed to the canary which moves at the same speed as the player
+            case 0: #Left
+                self.ePosX = self.ePosX - 1
+            case 1: #Right
+                self.ePosX = self.ePosX + 1
+            case 2: #Up
+                self.ePosY = self.ePosY - 1
+            case 3: #Down
+                self.ePosY = self.ePosY + 1
+            case 4:
+                print("Can't move!")
+        self.rect.topleft = [self.ePosX, self.ePosY]
+     
+#TEMPORARY     
+class tempSprite(pygame.sprite.Sprite):
+    def __init__(self, width, height, pos_x, pos_y):
+        super().__init__()
+        self.image = pygame.Surface([width,height])
+        self.image.fill((50,50,123))
+        self.rect = self.image.get_rect()
+        self.rect.topleft = [pos_x, pos_y]
+
+#TEMPORARY
+nagaIndicatorGroup = pygame.sprite.Group()
+def setupTemp(xLoc, yLoc, empty):
+    global nagaIndicatorGroup
+    if empty == True:
+        pygame.sprite.Group.empty(nagaIndicatorGroup)
+    
+    newTemp = tempSprite(cellPx, cellPx, xLoc * cellPx, yLoc * cellPx)
+    nagaIndicatorGroup.add(newTemp)
 
 class Door(pygame.sprite.Sprite):
     def __init__(self, width, height, pos_x, pos_y):
@@ -476,6 +581,7 @@ def removeLife(amount):
     time.sleep(.5)
     setupLevel(levelList[level])
     setupEnemy(levelList[level])
+    setupEnemyNaga(levelList[level])
     setupDoors(levelList[level])
     setupSwitch(levelList[level])
     setManLocation(manStartX, manStartY)
@@ -596,7 +702,7 @@ def setupSwitch(level):
                 switchGroup.add(newSwitch)
 
 
-#set up enemy group
+#set up canary enemy group
 enemyGroup = pygame.sprite.Group()
 def setupEnemy(level):
     global enemyGroup
@@ -610,6 +716,22 @@ def setupEnemy(level):
                 setColor = (123,46,46)
                 newEnemy = Enemy(cellPx, cellPx, xP * cellPx, yP * cellPx, setColor)
                 enemyGroup.add(newEnemy)
+
+#set up naga enemy group
+nagaGroup = pygame.sprite.Group()
+def setupEnemyNaga(level):
+    global nagaGroup
+    global newNaga
+    pygame.sprite.Group.empty(nagaGroup)
+    xP = 0
+    yP = 0
+    for xP in range(0, cellX):
+        for yP in range(0, cellY):
+            if level[(yP * cellX) + xP] == "n":
+                setColor = (46,123,46)
+                newNaga = NagaEnemy(cellPx, cellPx, xP * cellPx, yP * cellPx, setColor)
+                nagaGroup.add(newNaga)
+
 
 #set up pellet group
 pickGroup = pygame.sprite.Group()
@@ -679,6 +801,7 @@ while True:
     setupLevel(levelList[0])
     setupFood(levelList[0])
     setupEnemy(levelList[0])
+    setupEnemyNaga(levelList[0])
     setupDoors(levelList[0])
     setupSwitch(levelList[0])
     setupPick(levelList[0])
@@ -712,6 +835,7 @@ while True:
                     setupLevel(levelList[level])
                     setupFood(levelList[level])
                     setupEnemy(levelList[level])
+                    setupEnemyNaga(levelList[level])
                     setupSwitch(levelList[level])
                     setupDoors(levelList[level])
                     setupPick(levelList[level])
@@ -729,6 +853,8 @@ while True:
                     
                 elif event.key == pygame.K_ESCAPE:
                     lives = 0
+                elif event.key == pygame.K_r:
+                    setupTemp(0, 0, True)
         ManGridCheckpoint(manX, manY) #Primary Movement for player character
         manAnimFrame += 1
         if manAnimFrame > 300000:
@@ -764,6 +890,7 @@ while True:
         pickGroup.draw(screen)
         #Draw Enemies
         enemyGroup.draw(screen)
+        nagaGroup.draw(screen)
         #Draw Peter
         manGroup.draw(screen)
         #Draw Score
@@ -771,13 +898,17 @@ while True:
         screen.blit(screenText, (screenWidth * .75, screenHeight * .05))
         screenText = font.render("Lives: " + str(lives), True, (123,123,123))
         screen.blit(screenText, (screenWidth * .75, screenHeight * .1))
+        #Draw TEMPORARY sprites
+        nagaIndicatorGroup.draw(screen)
         #Update
         if not paused and not cutSceneLock:
             man.update()
             enemyGroup.update()
+            nagaGroup.update()
             doorGroup.update()
             switchGroup.update()
             pickGroup.update()
+            
             scatterTime -= 1
         #Wait if needed
         ####            Game Loop Clock             ####
@@ -788,6 +919,7 @@ while True:
             setupLevel(levelList[level])
             setupFood(levelList[level])
             setupEnemy(levelList[level])
+            setupEnemyNaga(levelList[level])
             setupDoors(levelList[level])
             setupSwitch(levelList[level])
             setupPick(levelList[level])

@@ -1,0 +1,9 @@
+x = 0
+n = True
+for xP in range(20):
+    if n is True:
+        x = x + xP
+    if n is False:
+        x = x - xP
+    print(x)
+
