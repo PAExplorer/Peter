@@ -339,6 +339,7 @@ class NagaEnemy(pygame.sprite.Sprite):
         self.ePosY = pos_y
         self.eGridX = 0
         self.eGridY = 0
+        self.nagID = pos_x + pos_y
         self.getSound = pygame.mixer.Sound("sound/hit.wav")
     def update(self):
         blockingHit = pygame.sprite.spritecollide(man, nagaGroup, False)
@@ -365,6 +366,8 @@ class NagaEnemy(pygame.sprite.Sprite):
                     self.eDirection = random.randint(0,3)
             
             #Draw "rays"
+            
+            setupTemp(0, 0, True, 0) #Clear old ones
             nagX = self.eGridX #Check these X grid positions
             nagB = True #Boolean
             nagCW = False #Check Wall
@@ -377,7 +380,7 @@ class NagaEnemy(pygame.sprite.Sprite):
                     nagB = True
                 
                 if levelList[level][int(self.eGridY * cellX  + nagX)] != "w" and nagCW == False:
-                    setupTemp(nagX, self.eGridY, False)
+                    setupTemp(nagX, self.eGridY, False, self.nagID)
                 else:
                     nagCW = True
                 
@@ -392,12 +395,10 @@ class NagaEnemy(pygame.sprite.Sprite):
                     nagY = nagY - nagYP
                     nagB = True
                 
-                if levelList[level][int(nagY * cellX  + self.eGridX)] != "w" and nagCW == False:
-                    setupTemp(self.eGridX, nagY, False)
+                if levelList[level][clamp(int(nagY * cellX  + self.eGridX), 0, cellX * cellY - 1)] != "w" and nagCW == False:
+                    setupTemp(self.eGridX, nagY, False, self.nagID)
                 else:
                     nagCW = True   
-            
-        
         match self.eDirection: #The naga moves a 1px per update as opposed to the canary which moves at the same speed as the player
             case 0: #Left
                 self.ePosX = self.ePosX - 1
@@ -410,25 +411,34 @@ class NagaEnemy(pygame.sprite.Sprite):
             case 4:
                 print("Can't move!")
         self.rect.topleft = [self.ePosX, self.ePosY]
-     
-#TEMPORARY     
+    def fireNagas(self, ID):
+        if ID == self.nagID:
+            print("fire thing at guy")
+                
+#TEMPORARY hit detectors
 class tempSprite(pygame.sprite.Sprite):
-    def __init__(self, width, height, pos_x, pos_y):
+    def __init__(self, width, height, pos_x, pos_y, ID):
         super().__init__()
         self.image = pygame.Surface([width,height])
-        self.image.fill((50,50,123))
+        self.image.fill((100,100,100))
         self.rect = self.image.get_rect()
         self.rect.topleft = [pos_x, pos_y]
+        self.tempID = ID
+    def update(self):
+        blockingHit = pygame.sprite.spritecollide(man, nagaIndicatorGroup, False)
+        for block in blockingHit: #Collisions with player cause death to player
+            print("OBLITERATE HIM..." + str(self.tempID))
+    
 
-#TEMPORARY
+#TEMPORARY hit detector group
 nagaIndicatorGroup = pygame.sprite.Group()
-def setupTemp(xLoc, yLoc, empty):
+def setupTemp(xLoc, yLoc, empty, ID):
     global nagaIndicatorGroup
     if empty == True:
         pygame.sprite.Group.empty(nagaIndicatorGroup)
-    
-    newTemp = tempSprite(cellPx, cellPx, xLoc * cellPx, yLoc * cellPx)
-    nagaIndicatorGroup.add(newTemp)
+    else:
+        newTemp = tempSprite(cellPx, cellPx, xLoc * cellPx, yLoc * cellPx, ID)
+        nagaIndicatorGroup.add(newTemp)
 
 class Door(pygame.sprite.Sprite):
     def __init__(self, width, height, pos_x, pos_y):
@@ -854,7 +864,7 @@ while True:
                 elif event.key == pygame.K_ESCAPE:
                     lives = 0
                 elif event.key == pygame.K_r:
-                    setupTemp(0, 0, True)
+                    setupTemp(0, 0, True, 0)
         ManGridCheckpoint(manX, manY) #Primary Movement for player character
         manAnimFrame += 1
         if manAnimFrame > 300000:
@@ -884,6 +894,8 @@ while True:
         screen.fill((14,14,14))
         #screen.blit(background, (0,0))
         wallGroup.draw(screen)
+        #Draw TEMPORARY sprites
+        nagaIndicatorGroup.draw(screen)
         foodGroup.draw(screen)
         switchGroup.draw(screen)
         doorGroup.draw(screen)
@@ -898,8 +910,7 @@ while True:
         screen.blit(screenText, (screenWidth * .75, screenHeight * .05))
         screenText = font.render("Lives: " + str(lives), True, (123,123,123))
         screen.blit(screenText, (screenWidth * .75, screenHeight * .1))
-        #Draw TEMPORARY sprites
-        nagaIndicatorGroup.draw(screen)
+        
         #Update
         if not paused and not cutSceneLock:
             man.update()
@@ -908,6 +919,7 @@ while True:
             doorGroup.update()
             switchGroup.update()
             pickGroup.update()
+            nagaIndicatorGroup.update()
             
             scatterTime -= 1
         #Wait if needed
@@ -923,6 +935,7 @@ while True:
             setupDoors(levelList[level])
             setupSwitch(levelList[level])
             setupPick(levelList[level])
+            setupTemp(0, 0, True, 0)
             cutSceneLockSet(True)
             setWaitTime(1)
             manX = manStartX
