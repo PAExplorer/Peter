@@ -256,6 +256,7 @@ class Pick(pygame.sprite.Sprite):
 
 #### Man Sprite and sprite sheet ####
 manSprites = ["img/peter.png", "img/peter1.png", "img/peter2.png", "img/peter3.png", "img/peter4.png", "img/peter5.png"]
+crabSprites = ["img/crab1.png", "img/crab2.png"]
 class Man(pygame.sprite.Sprite):
     def __init__(self, width, height, pos_x, pos_y, color):
         super().__init__()
@@ -278,7 +279,8 @@ class Enemy(pygame.sprite.Sprite): #Enemy(cellPx, cellPx, xP * cellPx, yP * cell
     def __init__(self, width, height, pos_x, pos_y, color):
         super().__init__()
         self.image = pygame.Surface([width,height])
-        self.image.fill(color)
+        self.image = pygame.image.load("img/crab1.png")
+        self.image = pygame.transform.scale(self.image, (cellPx, cellPx))
         self.rect = self.image.get_rect()
         self.rect.topleft = [pos_x, pos_y]
         self.eDirection = 0
@@ -325,6 +327,9 @@ class Enemy(pygame.sprite.Sprite): #Enemy(cellPx, cellPx, xP * cellPx, yP * cell
             case 4:
                 print("Can't move!")
         self.rect.topleft = [self.ePosX, self.ePosY]
+    def animUpdateEnemy(self, frame):
+        self.image = pygame.image.load(crabSprites[frame % 2])
+        self.image = pygame.transform.scale(self.image, (cellPx, cellPx)) 
 
 class NagaEnemy(pygame.sprite.Sprite):
     def __init__(self, width, height, pos_x, pos_y, color):
@@ -817,7 +822,8 @@ while True:
     setupPick(levelList[0])
     manAnimFrame = 0
     
-    setWaitTime(.2)
+    #optional wait between levels
+    setWaitTime(.05)
     #Primary Game Loop
     while lives > 0:########################################################################################################################
         for event in pygame.event.get():
@@ -852,7 +858,7 @@ while True:
                     manX = manStartX
                     manY = manStartY
                     cutSceneLockSet(True)
-                    setWaitTime(1)
+                    setWaitTime(.2)
                     print("Next Level")
                 elif event.key == pygame.K_F5:
                     nVolume = clamp(nVolume - .1, 0 ,1)
@@ -868,7 +874,7 @@ while True:
         ManGridCheckpoint(manX, manY) #Primary Movement for player character
         manAnimFrame += 1
         if manAnimFrame > 300000:
-            manAnimFram = 0
+            manAnimFrame = 0
         
         
         #Toggle Scatter Mode for enemies
@@ -915,6 +921,7 @@ while True:
         if not paused and not cutSceneLock:
             man.update()
             enemyGroup.update()
+            newEnemy.animUpdateEnemy(manAnimFrame)
             nagaGroup.update()
             doorGroup.update()
             switchGroup.update()
@@ -937,7 +944,7 @@ while True:
             setupPick(levelList[level])
             setupTemp(0, 0, True, 0)
             cutSceneLockSet(True)
-            setWaitTime(1)
+            setWaitTime(.01)
             manX = manStartX
             manY = manStartY
             man.update()
