@@ -162,3 +162,5 @@ level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
 level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
 level5Template += "xwegxxxxxxxxxxxxxxxxxxxxxxgew"
 level5Template += "xwwwwwwwwwwwwwwwwwwwwwwwwwwww"
+
+levelList = [level1Template, level2Template, level3Template, level4Template, level5Template]
