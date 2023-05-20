@@ -5,4 +5,8 @@ An arcade style game written in python utilizing pygame.
 
 The only dependencies should be pygame for a python 3.11.3 install
 
+The two enemies are
 
+The Crab: Relentlessly chases down Peter
+
+The Gorgon: Fires a projectile at Peter when she spots him
