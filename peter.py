@@ -89,6 +89,7 @@ class Pick(pygame.sprite.Sprite):
 #### Man Sprite and sprite sheet ####
 manSprites = ["img/peter.png", "img/peter1.png", "img/peter2.png", "img/peter3.png", "img/peter4.png", "img/peter5.png"]
 crabSprites = ["img/crab1.png", "img/crab2.png"]
+#nagaSprites = 
 class Man(pygame.sprite.Sprite):
     def __init__(self, width, height, pos_x, pos_y, color):
         super().__init__()
@@ -167,7 +168,7 @@ class NagaEnemy(pygame.sprite.Sprite):
     def __init__(self, width, height, pos_x, pos_y, color):
         super().__init__()
         self.image = pygame.Surface([width,height])
-        self.image.fill(color)
+        self.image = pygame.image.load("img/snake0.png")
         self.rect = self.image.get_rect()
         self.rect.topleft = [pos_x, pos_y]
         self.eDirection = 0
