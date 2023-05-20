@@ -42,9 +42,6 @@ pygame.display.set_caption('Pickaxe Pete / F3~F4 Scale game / F5~F6 Sound level 
 gameIcon = pygame.image.load('img/pick.png')
 pygame.display.set_icon(gameIcon)
 
-
-levelList = [level1Template, level2Template, level3Template, level4Template, level5Template]
-
 #Classes used
 class Wall(pygame.sprite.Sprite):
     def __init__(self, width, height, pos_x, pos_y, color):
@@ -418,7 +415,7 @@ def addLevel(amount):
 def openDoors(boolIn):
     global doorsOpen
     doorsOpen = boolIn
-    print(doorsOpen)
+    #print(doorsOpen)
     #pygame.sprite.Group.empty(switchGroup)
     #pygame.sprite.Group.empty(doorGroup)
 def cutSceneLockSet(boolIn):
