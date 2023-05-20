@@ -4,4 +4,4 @@
 *.old
 *.py~
 _pycache_
-.pyc
+*.pyc
