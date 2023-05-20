@@ -1,0 +1,7 @@
+*.swp
+*.un~
+*.swo
+*.old
+*.py~
+_pycache_
+.pyc
