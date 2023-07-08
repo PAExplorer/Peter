@@ -89,7 +89,8 @@ class Pick(pygame.sprite.Sprite):
 #### Man Sprite and sprite sheet ####
 manSprites = ["img/peter.png", "img/peter1.png", "img/peter2.png", "img/peter3.png", "img/peter4.png", "img/peter5.png"]
 crabSprites = ["img/crab1.png", "img/crab2.png"]
-#nagaSprites = 
+nagaSprites = ["img/snake0.png", "img/snake1.png"]
+
 class Man(pygame.sprite.Sprite):
     def __init__(self, width, height, pos_x, pos_y, color):
         super().__init__()
@@ -252,6 +253,9 @@ class NagaEnemy(pygame.sprite.Sprite):
     def fireNagas(self, ID):
         if ID == self.nagID:
             print("fire thing at guy")
+    def animUpdateEnemy(self, frame):
+        self.image = pygame.image.load(nagaSprites[frame % 2])
+        self.image = pygame.transform.scale(self.image, (cellPx, cellPx)) 
                 
 #TEMPORARY hit detectors
 class tempSprite(pygame.sprite.Sprite):
@@ -754,13 +758,17 @@ while True:
         if not paused and not cutSceneLock:
             man.update()
             enemyGroup.update()
-            newEnemy.animUpdateEnemy(manAnimFrame)
             nagaGroup.update()
             doorGroup.update()
             switchGroup.update()
             pickGroup.update()
             nagaIndicatorGroup.update()
-            
+            for newEnemy in enemyGroup:
+                #enemyGroup.newEnemy.animUpdateEnemy(manAnimFrame)
+                newEnemy.animUpdateEnemy(manAnimFrame)
+            for nagaEnemy in nagaGroup:
+                #enemyGroup.newEnemy.animUpdateEnemy(manAnimFrame)
+                nagaEnemy.animUpdateEnemy(manAnimFrame)
             scatterTime -= 1
         #Wait if needed
         ####            Game Loop Clock             ####
